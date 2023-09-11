@@ -1,0 +1,31 @@
+import random
+
+# Define a function to generate random responses from a list of predefined responses.
+def get_response(intent):
+    responses = {
+        "hello": ["Hello!", "Hi there!", "Hey! How can I help you?"],
+        "how_are_you": ["I'm just a computer program, but I'm here to assist you!", "I'm doing well, thanks for asking."],
+        "goodbye": ["Goodbye!", "See you later!", "Have a great day!"],
+        "default": ["I'm not sure what you mean. Can you please rephrase?", "I didn't understand that. Could you try again?"]
+    }
+    
+    return random.choice(responses.get(intent, responses["default"]))
+
+# Main chat loop
+while True:
+    user_input = input("You: ").lower()
+    
+    if "hello" in user_input:
+        response = get_response("hello")
+    elif "how are you" in user_input:
+        response = get_response("how_are_you")
+    elif "goodbye" in user_input:
+        response = get_response("goodbye")
+    else:
+        response = get_response("default")
+    
+    print("Chatbot:", response)
+    
+    # Exit the loop if the user says goodbye
+    if "goodbye" in user_input:
+        break
